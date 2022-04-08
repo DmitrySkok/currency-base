@@ -23,7 +23,7 @@ import { formatAmountInCurrency } from './../../utils/formatAmountInCurrency';
       for (const testAmount of testCases) {
         render(<ResultBox from="PLN" to="USD" amount={testAmount} />);
         const divWithResult = screen.getByTestId('divWithResult');
-        expect(divWithResult).toHaveTextContent(`${formatAmountInCurrency(testAmount, 'PLN')} = ${formatAmountInCurrency(testAmount/3.5, 'USD')}`);
+        expect(divWithResult).toHaveTextContent(`${formatAmountInCurrency(testAmount, 'PLN')} = ${formatAmountInCurrency(testAmount/3.5, 'USD')}`.replace(/\u00a0/g, ' '));
         cleanup();
       }
     });
@@ -32,7 +32,7 @@ import { formatAmountInCurrency } from './../../utils/formatAmountInCurrency';
       for (const testAmount of testCases) {
         render(<ResultBox from="USD" to="PLN" amount={testAmount} />);
         const divWithResult = screen.getByTestId('divWithResult');
-        expect(divWithResult).toHaveTextContent(`${formatAmountInCurrency(testAmount, 'USD')} = ${formatAmountInCurrency(testAmount*3.5, 'PLN')}`);
+        expect(divWithResult).toHaveTextContent(`${formatAmountInCurrency(testAmount, 'USD')} = ${formatAmountInCurrency(testAmount*3.5, 'PLN')}`.replace(/\u00a0/g, ' '));
         cleanup();
       }
     });
@@ -41,7 +41,7 @@ import { formatAmountInCurrency } from './../../utils/formatAmountInCurrency';
       for (const testAmount of testCases) {
         render(<ResultBox from="USD" to="USD" amount={testAmount} />);
         const divWithResult = screen.getByTestId('divWithResult');
-        expect(divWithResult).toHaveTextContent(`${formatAmountInCurrency(testAmount, 'USD')} = ${formatAmountInCurrency(testAmount, 'USD')}`);
+        expect(divWithResult).toHaveTextContent(`${formatAmountInCurrency(testAmount, 'USD')} = ${formatAmountInCurrency(testAmount, 'USD')}`.replace(/\u00a0/g, ' '));
         cleanup();
       }
     });
@@ -50,8 +50,7 @@ import { formatAmountInCurrency } from './../../utils/formatAmountInCurrency';
       for (const testAmount of testCases) {
         render(<ResultBox from="PLN" to="PLN" amount={testAmount} />);
         const divWithResult = screen.getByTestId('divWithResult');
-        expect(divWithResult).toHaveTextContent(`${formatAmountInCurrency(testAmount, 'PLN')} = ${formatAmountInCurrency(testAmount, 'PLN')}`);
-        cleanup();
+        expect(divWithResult).toHaveTextContent(`${formatAmountInCurrency(testAmount, 'PLN')} = ${formatAmountInCurrency(testAmount, 'PLN')}`.replace(/\u00a0/g, ' '));        cleanup();
       }
     });
 
